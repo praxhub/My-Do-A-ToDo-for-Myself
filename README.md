@@ -1,41 +1,52 @@
-# My-Do (Version 1.0)
+# My-Do (Version 1.1)
 
-My-Do is an offline productivity app built with Flutter to manage tasks, daily notes, and lightweight planning in one place.
-It is designed for fast personal use with local-first storage, clean UI flows, and support for image and voice attachments.
-Version 1.0 focuses on reliability and privacy by keeping everything on-device with no login, cloud sync, or backend dependency.
+My-Do is an offline Flutter productivity app for personal planning, task tracking, and day planning.
+It supports local-first task management with image and voice attachments, calendar visibility, and a responsive Android widget.
+Version 1.1 focuses on widget reliability, performance, journal improvements, and dark-theme polish.
 
 ## Why I Built This
 
-I built **My-Do** for myself because I wanted a simple app that matched how I actually plan my day. Most apps I tried were either too complicated or forced internet/cloud-based workflows that I did not need.
-
-I wanted one private, offline space where I could quickly add tasks, attach images or voice notes when needed, and keep one daily note without distractions.
-
-So this project started as my personal productivity tool first, and Version 1.0 is intentionally focused on practical features that I use every day.
+I built **My-Do** for myself because I wanted a focused app that matches my daily workflow instead of forcing cloud-first complexity.
+I needed one private place to capture tasks fast, attach context (images/voice), and check progress without internet dependency.
+This project is my personal productivity tool first, so each release prioritizes practical features I use every day.
 
 ## Version
 
-- Current version: `1.0`
+- Current version: `1.1.1+4`
+- Release tag target: `v1.1`
 
-## Core Features (v1.0)
+## Core Features (v1.1)
 
 - Offline task CRUD (create, edit, delete, complete)
 - Due date and priority (Low / Medium / High)
 - Image attachment (camera/gallery, local storage)
 - Voice note recording and playback (local storage)
-- Daily Notes (one entry per date)
+- Day Plan (priority-first day planning with optional date)
 - Calendar task view by date
 - Light/Dark mode toggle with animation
-- Android home widget (today count + top tasks)
+- Android home widgets:
+  - ToDo widget
+  - Day Plan widget
+  - Checkbox toggle actions
+  - Scrollable task list (not fixed to 5 items)
+  - Quick add (`+`) and Open action
+  - Dark/Light theme sync
+- Theme-based splash launch (light/dark logo)
 
 ## Tech Stack
 
 - Flutter (stable)
 - Local storage: Hive
+- Home widget bridge: `home_widget`
 - No backend, no login, no cloud sync
 
 ## Repository
 
 `https://github.com/praxhub/My-Do-A-ToDo-for-Myself.git`
+
+## Changelog
+
+See `CHANGELOG.md` for release notes.
 
 ---
 
@@ -57,7 +68,7 @@ cd My-Do-A-ToDo-for-Myself
 
 ---
 
-## 2. Pull Latest Changes (Update Existing Copy)
+## 2. Pull Latest Changes
 
 ### Windows (PowerShell)
 
@@ -77,13 +88,10 @@ git pull origin main
 
 ## 3. Prerequisites
 
-Install these before running:
-
 - Flutter SDK (stable channel)
-- Dart SDK (comes with Flutter)
 - Git
-- Android SDK + platform tools
-- A connected Android device (USB debugging) or Android emulator
+- Android SDK + platform-tools
+- Android device (USB debugging enabled) or emulator
 
 Check setup:
 
@@ -105,26 +113,19 @@ flutter pub get
 
 ## 5. Run the App
 
-### Option A: Run on connected Android device
+### Android device
 
 ```bash
 flutter devices
 flutter run -d <device_id>
 ```
 
-### Option B: Run on emulator
+### Emulator
 
 ```bash
 flutter emulators
 flutter emulators --launch <emulator_id>
 flutter run
-```
-
-### Option C: Run on desktop/web (if needed)
-
-```bash
-flutter run -d windows
-flutter run -d chrome
 ```
 
 ---
@@ -153,7 +154,26 @@ Output:
 
 ---
 
-## 7. Project Structure (High Level)
+## 7. Screenshots (Manual Add)
+
+Add screenshots in:
+
+`docs/screenshots/`
+
+Recommended files:
+
+- `home.png`
+- `add_edit_task.png`
+- `calendar.png`
+- `day_plan.png`
+- `widget_light.png`
+- `widget_dark.png`
+- `splash_light.png`
+- `splash_dark.png`
+
+---
+
+## 8. Project Structure
 
 - `lib/screens/` UI screens
 - `lib/models/` data models
@@ -165,6 +185,6 @@ Output:
 
 ## Notes
 
-- App is fully offline in v1.0.
+- App is fully offline.
 - Data is stored only on device.
-- Internet/auth/cloud features are intentionally out of scope for this version.
+- Internet/auth/cloud features are intentionally out of scope.

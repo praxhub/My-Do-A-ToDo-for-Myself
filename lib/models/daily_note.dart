@@ -7,6 +7,8 @@ class DailyNote extends HiveObject {
     required this.date,
     required this.content,
     this.imagePath,
+    this.audioPath,
+    required this.updatedAt,
   });
 
   @HiveField(0)
@@ -20,6 +22,12 @@ class DailyNote extends HiveObject {
 
   @HiveField(3)
   String? imagePath;
+
+  @HiveField(4)
+  String? audioPath;
+
+  @HiveField(5)
+  DateTime updatedAt;
 }
 
 class DailyNoteAdapter extends TypeAdapter<DailyNote> {
@@ -37,13 +45,15 @@ class DailyNoteAdapter extends TypeAdapter<DailyNote> {
       date: fields[1] as DateTime,
       content: fields[2] as String,
       imagePath: fields[3] as String?,
+      audioPath: fields[4] as String?,
+      updatedAt: fields[5] as DateTime? ?? DateTime.now(),
     );
   }
 
   @override
   void write(BinaryWriter writer, DailyNote obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -51,6 +61,10 @@ class DailyNoteAdapter extends TypeAdapter<DailyNote> {
       ..writeByte(2)
       ..write(obj.content)
       ..writeByte(3)
-      ..write(obj.imagePath);
+      ..write(obj.imagePath)
+      ..writeByte(4)
+      ..write(obj.audioPath)
+      ..writeByte(5)
+      ..write(obj.updatedAt);
   }
 }

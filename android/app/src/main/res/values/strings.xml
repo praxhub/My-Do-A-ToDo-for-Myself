@@ -2,4 +2,26 @@
 <resources>
     <string name="app_name">My-Do</string>
     <string name="widget_description">My-Do daily tasks widget</string>
+    <string name="day_plan_widget_description">My-Do day plan widget</string>
+    <string name="widget_open_app">Open App</string>
+    <string name="widget_open_short">Open</string>
+    <string name="widget_empty_text">No tasks for today</string>
+    <string name="widget_empty_unfinished_text">No unfinished tasks</string>
+    <string name="widget_empty_dayplan_text">No day plans for today</string>
+    <string name="widget_todo_title">ToDo</string>
+    <string name="widget_dayplan_title">Day Plan</string>
+    <string name="widget_add_task">Add task</string>
+    <string name="widget_toggle_task">Toggle task</string>
+    <string name="widget_edit_task">Edit task</string>
+    <string name="widget_delete_task">Delete task</string>
+    <string name="quick_add_title">Quick Add Task</string>
+    <string name="quick_add_title_dayplan">Quick Add Day Plan</string>
+    <string name="quick_add_hint">Task</string>
+    <string name="quick_add_cancel">Cancel</string>
+    <string name="quick_add_save">Save Task</string>
+    <string name="quick_add_validation">Please enter a task</string>
+    <string name="quick_add_due_none">No due date</string>
+    <string name="quick_add_due_clear">Clear</string>
+    <string name="quick_add_advanced">Advanced</string>
+    <string name="quick_add_media_hint">For image/audio, tap Advanced to open full editor.</string>
 </resources>

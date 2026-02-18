@@ -53,8 +53,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   FilledButton.icon(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) =>
-                            AddEditTaskScreen(initialDueDate: _selectedDay),
+                        builder: (_) => AddEditTaskScreen(
+                          initialDueDate: _selectedDay,
+                          initialKind: TaskKind.todo,
+                        ),
                       ),
                     ),
                     icon: const Icon(Icons.add),

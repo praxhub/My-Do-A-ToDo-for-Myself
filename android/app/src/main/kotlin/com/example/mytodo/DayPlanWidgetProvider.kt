@@ -15,7 +15,7 @@ import es.antonborri.home_widget.HomeWidgetBackgroundReceiver
 import es.antonborri.home_widget.HomeWidgetLaunchIntent
 import es.antonborri.home_widget.HomeWidgetProvider
 
-class TodayTaskWidgetProvider : HomeWidgetProvider() {
+class DayPlanWidgetProvider : HomeWidgetProvider() {
 
     companion object {
         private const val backgroundAction = "es.antonborri.home_widget.action.BACKGROUND"
@@ -30,30 +30,22 @@ class TodayTaskWidgetProvider : HomeWidgetProvider() {
         appWidgetIds.forEach { widgetId ->
             val isDark = readBool(widgetData, "widget_is_dark", false)
             val showCount = readBool(widgetData, "widget_show_count", true)
-            val showAllUnfinished = readBool(widgetData, "widget_show_all_unfinished", true)
 
             val views = RemoteViews(
                 context.packageName,
-                if (isDark) R.layout.todo_task_widget_dark else R.layout.todo_task_widget_light,
+                if (isDark) R.layout.day_plan_widget_dark else R.layout.day_plan_widget_light,
             )
 
             views.setTextViewText(
                 R.id.task_count_text,
-                if (showAllUnfinished) {
-                    "${readInt(widgetData, "todo_task_count", 0)} unfinished task(s)"
-                } else {
-                    "${readInt(widgetData, "todo_task_count", 0)} due today"
-                },
+                "${readInt(widgetData, "dayplan_task_count", 0)} day plan item(s)",
             )
             views.setViewVisibility(R.id.task_count_text, if (showCount) View.VISIBLE else View.GONE)
             views.setTextViewText(
                 R.id.empty_state_text,
-                context.getString(
-                    if (showAllUnfinished) R.string.widget_empty_unfinished_text
-                    else R.string.widget_empty_text,
-                ),
+                context.getString(R.string.widget_empty_dayplan_text),
             )
-            views.setTextViewText(R.id.widget_title, context.getString(R.string.widget_todo_title))
+            views.setTextViewText(R.id.widget_title, context.getString(R.string.widget_dayplan_title))
             views.setEmptyView(R.id.tasks_list, R.id.empty_state_text)
 
             val iconTint = color(
@@ -63,7 +55,7 @@ class TodayTaskWidgetProvider : HomeWidgetProvider() {
             views.setInt(R.id.add_task_button, "setColorFilter", iconTint)
             views.setInt(R.id.open_app_icon, "setColorFilter", iconTint)
 
-            val openAppUri = Uri.parse("mydo://widget?action=open&target=todo")
+            val openAppUri = Uri.parse("mydo://widget?action=open&target=dayplan")
             val openAppPendingIntent = createLaunchPendingIntent(
                 context = context,
                 uri = openAppUri,
@@ -72,12 +64,12 @@ class TodayTaskWidgetProvider : HomeWidgetProvider() {
             views.setOnClickPendingIntent(R.id.open_app_button, openAppPendingIntent)
             views.setOnClickPendingIntent(R.id.widget_title, openAppPendingIntent)
 
-            val quickAddPendingIntent = createQuickAddPendingIntent(context, widgetId, "todo")
+            val quickAddPendingIntent = createQuickAddPendingIntent(context, widgetId, "dayPlan")
             views.setOnClickPendingIntent(R.id.add_task_button, quickAddPendingIntent)
 
             val listIntent = Intent(context, WidgetTaskListService::class.java).apply {
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
-                putExtra("kind", "todo")
+                putExtra("kind", "dayPlan")
                 data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
             }
             views.setRemoteAdapter(R.id.tasks_list, listIntent)
@@ -126,7 +118,7 @@ class TodayTaskWidgetProvider : HomeWidgetProvider() {
         }
         return PendingIntent.getBroadcast(
             context,
-            requestCode("toggle_template", "todo", widgetId),
+            requestCode("toggle_template", "dayPlan", widgetId),
             intent,
             flags,
         )
@@ -167,7 +159,7 @@ class TodayTaskWidgetProvider : HomeWidgetProvider() {
     }
 
     private fun requestCode(action: String, token: String, widgetId: Int): Int {
-        return "$action|$token|$widgetId|todo".hashCode()
+        return "$action|$token|$widgetId|dayPlan".hashCode()
     }
 
     private fun readInt(prefs: SharedPreferences, key: String, fallback: Int): Int {

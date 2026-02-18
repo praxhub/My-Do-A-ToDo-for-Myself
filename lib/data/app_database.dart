@@ -20,6 +20,9 @@ class AppDatabase {
     if (!Hive.isAdapterRegistered(2)) {
       Hive.registerAdapter(DailyNoteAdapter());
     }
+    if (!Hive.isAdapterRegistered(3)) {
+      Hive.registerAdapter(TaskKindAdapter());
+    }
 
     await Future.wait([
       Hive.openBox<TaskItem>(tasksBoxName),

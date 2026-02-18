@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_bg">#000000</color>
+    <color name="widget_bg">#000000</color>
+    <color name="widget_title">#F8FAFC</color>
+    <color name="widget_subtitle">#B0BEC5</color>
+    <color name="widget_empty">#90A4AE</color>
+    <color name="widget_task_title">#E5E7EB</color>
+    <color name="widget_task_done">#9AA3AF</color>
+    <color name="widget_icon">#E2E8F0</color>
+    <color name="widget_icon_delete">#F87171</color>
+    <color name="widget_row_bg">#111111</color>
+    <color name="widget_row_stroke">#222222</color>
+</resources>

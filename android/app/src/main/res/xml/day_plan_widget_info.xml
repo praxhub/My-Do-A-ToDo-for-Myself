@@ -3,7 +3,7 @@
     android:minWidth="180dp"
     android:minHeight="180dp"
     android:updatePeriodMillis="86400000"
-    android:initialLayout="@layout/todo_task_widget_light"
+    android:initialLayout="@layout/day_plan_widget_light"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen"
-    android:description="@string/widget_description" />
+    android:description="@string/day_plan_widget_description" />

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -70,11 +68,9 @@ class TaskTile extends StatelessWidget {
                   ),
                   visualDensity: VisualDensity.compact,
                 ),
-                if (task.imagePath != null &&
-                    File(task.imagePath!).existsSync())
+                if (task.imagePath != null && task.imagePath!.isNotEmpty)
                   const Icon(Icons.image, size: 18),
-                if (task.audioPath != null &&
-                    File(task.audioPath!).existsSync())
+                if (task.audioPath != null && task.audioPath!.isNotEmpty)
                   const Icon(Icons.mic, size: 18),
               ],
             ),

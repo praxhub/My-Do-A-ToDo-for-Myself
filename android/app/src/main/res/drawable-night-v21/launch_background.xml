@@ -4,6 +4,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/splash_logo_light" />
+            android:src="@drawable/splash_logo_dark" />
     </item>
 </layer-list>

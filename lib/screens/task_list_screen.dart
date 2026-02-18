@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../data/app_database.dart';
 import '../data/task_repository.dart';
+import '../models/task_item.dart';
 import 'add_edit_task_screen.dart';
 import '../widgets/task_tile.dart';
 
@@ -14,7 +15,7 @@ class TaskListScreen extends StatelessWidget {
     return ValueListenableBuilder(
       valueListenable: AppDatabase.taskBox.listenable(),
       builder: (context, _, __) {
-        final tasks = TaskRepository.allSorted();
+        final tasks = TaskRepository.byKind(TaskKind.todo);
 
         return Column(
           children: [
@@ -31,20 +32,19 @@ class TaskListScreen extends StatelessWidget {
                   FilledButton.icon(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => const AddEditTaskScreen(),
+                        builder: (_) =>
+                            const AddEditTaskScreen(initialKind: TaskKind.todo),
                       ),
                     ),
                     icon: const Icon(Icons.add),
-                    label: const Text('Add Task'),
+                    label: const Text('Add ToDo'),
                   ),
                 ],
               ),
             ),
             Expanded(
               child: tasks.isEmpty
-                  ? const Center(
-                      child: Text('No tasks yet. Add one to get started.'),
-                    )
+                  ? const Center(child: Text('No ToDo yet.'))
                   : ListView.builder(
                       itemCount: tasks.length,
                       itemBuilder: (context, index) {

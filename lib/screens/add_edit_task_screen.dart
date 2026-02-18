@@ -13,10 +13,16 @@ import '../models/task_item.dart';
 import '../services/media_service.dart';
 
 class AddEditTaskScreen extends StatefulWidget {
-  const AddEditTaskScreen({super.key, this.existingTask, this.initialDueDate});
+  const AddEditTaskScreen({
+    super.key,
+    this.existingTask,
+    this.initialDueDate,
+    this.initialKind,
+  });
 
   final TaskItem? existingTask;
   final DateTime? initialDueDate;
+  final TaskKind? initialKind;
 
   @override
   State<AddEditTaskScreen> createState() => _AddEditTaskScreenState();
@@ -33,6 +39,7 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
 
   DateTime? _dueDate;
   TaskPriority _priority = TaskPriority.medium;
+  TaskKind _kind = TaskKind.todo;
   String? _imagePath;
   String? _audioPath;
   bool _isRecording = false;
@@ -48,10 +55,12 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
       _descriptionController.text = task.description ?? '';
       _dueDate = task.dueDate;
       _priority = task.priority;
+      _kind = task.kind;
       _imagePath = task.imagePath;
       _audioPath = task.audioPath;
     } else {
       _dueDate = widget.initialDueDate;
+      _kind = widget.initialKind ?? TaskKind.todo;
     }
   }
 
@@ -168,10 +177,12 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
           : _descriptionController.text.trim(),
       dueDate: _dueDate,
       priority: _priority,
+      kind: _kind,
       isCompleted: existing?.isCompleted ?? false,
       imagePath: _imagePath,
       audioPath: _audioPath,
       createdAt: existing?.createdAt ?? DateTime.now(),
+      completedAt: existing?.completedAt,
     );
 
     await TaskRepository.upsert(task);
@@ -196,10 +207,11 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
           children: [
             TextFormField(
               controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
+              autofocus: widget.existingTask != null,
+              decoration: const InputDecoration(labelText: 'Task'),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'Title is required';
+                  return 'Task is required';
                 }
                 return null;
               },
@@ -227,6 +239,24 @@ class _AddEditTaskScreenState extends State<AddEditTaskScreen> {
                 }
               },
               decoration: const InputDecoration(labelText: 'Priority'),
+            ),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<TaskKind>(
+              initialValue: _kind,
+              items: TaskKind.values
+                  .map(
+                    (kind) => DropdownMenuItem(
+                      value: kind,
+                      child: Text(kind == TaskKind.todo ? 'ToDo' : 'Day Plan'),
+                    ),
+                  )
+                  .toList(),
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() => _kind = value);
+                }
+              },
+              decoration: const InputDecoration(labelText: 'Type'),
             ),
             const SizedBox(height: 12),
             Row(

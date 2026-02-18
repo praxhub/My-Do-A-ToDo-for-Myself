@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_bg">#F2F6FA</color>
+    <color name="widget_bg">#FFFFFF</color>
+    <color name="widget_title">#0F172A</color>
+    <color name="widget_subtitle">#334155</color>
+    <color name="widget_empty">#64748B</color>
+    <color name="widget_task_title">#111111</color>
+    <color name="widget_task_done">#6B7280</color>
+    <color name="widget_icon">#1F2937</color>
+    <color name="widget_icon_delete">#C62828</color>
+    <color name="widget_row_bg">#F8FAFC</color>
+    <color name="widget_row_stroke">#E2E8F0</color>
+    <color name="widget_bg_light_fixed">#FFFFFF</color>
+    <color name="widget_title_light_fixed">#0F172A</color>
+    <color name="widget_subtitle_light_fixed">#334155</color>
+    <color name="widget_empty_light_fixed">#64748B</color>
+    <color name="widget_task_title_light_fixed">#111111</color>
+    <color name="widget_task_done_light_fixed">#6B7280</color>
+    <color name="widget_icon_light_fixed">#1F2937</color>
+    <color name="widget_icon_delete_light_fixed">#C62828</color>
+    <color name="widget_row_bg_light_fixed">#F8FAFC</color>
+    <color name="widget_row_stroke_light_fixed">#E2E8F0</color>
+    <color name="widget_bg_dark_fixed">#000000</color>
+    <color name="widget_title_dark_fixed">#F8FAFC</color>
+    <color name="widget_subtitle_dark_fixed">#B0BEC5</color>
+    <color name="widget_empty_dark_fixed">#90A4AE</color>
+    <color name="widget_task_title_dark_fixed">#E5E7EB</color>
+    <color name="widget_task_done_dark_fixed">#9AA3AF</color>
+    <color name="widget_icon_dark_fixed">#E2E8F0</color>
+    <color name="widget_icon_delete_dark_fixed">#F87171</color>
+    <color name="widget_row_bg_dark_fixed">#111111</color>
+    <color name="widget_row_stroke_dark_fixed">#222222</color>
+</resources>
